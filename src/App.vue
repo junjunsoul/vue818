@@ -19,7 +19,7 @@
               </Poptip>
               <Radio-group v-model="lang" type="button" size="small" class="f_left">
                 <Radio label="CN"></Radio>
-                <Radio label="EN" disabled></Radio>
+                <Radio label="EN"></Radio>
               </Radio-group>
             </div>
             <div class="wrapper-header-nav-list">
@@ -31,13 +31,11 @@
               <Menu-item name="Summary" @click.native.on-select="Goto_page('/Summary')">
                 <Icon type="happy" size='18'></Icon>
                 推广活动
-
               </Menu-item>
               <Submenu name="3">
                 <template slot="title">
                   <Icon type="stats-bars" size='18'></Icon>
                   统计分析
-
                 </template>
                 <Menu-group title="按天">
                   <Menu-item name="3-1">汇总</Menu-item>
@@ -54,7 +52,6 @@
               <Menu-item name="Seting" @click.native.on-select="Goto_page('/Seting')">
                 <Icon type="settings" size='18'></Icon>
                 产品设置
-
               </Menu-item>
             </div>
             <div class="wrapper-header-nav-search"></div>
@@ -88,9 +85,17 @@
         lang: 'CN'
       }
     },
-    methods: {
+    methods:{
       Goto_page(link){
         this.$router.push({path: link})
+      }
+    },
+    mounted(){
+      console.log(this.$t('i.select.placeholder'))
+    },
+    watch:{
+      lang(i){
+        this.$store.commit('chang_lang',i)
       }
     }
   }
